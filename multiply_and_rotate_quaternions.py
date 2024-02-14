@@ -1,6 +1,6 @@
 import numpy as np
 
-def multiply(q1, q2):
+def multiply_quaternion(q1, q2):
     w1, x1, y1, z1 = q1
     w2, x2, y2, z2 = q2
     w = w1 * w2 - x1 * x2 - y1 * y2 - z1 * z2
@@ -21,25 +21,25 @@ def conjugate(q):
 def magnitude(q):
     return np.linalg.norm(q)
 
-q = np.array([1, 2, 3, 4])
-p = normalize(q)
+# q = np.array([1, 2, 3, 4])
+# p = normalize(q)
 
-q_bar = conjugate(q)
+# q_bar = conjugate(q)
 
 
-v = np.array([0, 1, 0, 1])
+# v = np.array([0, 1, 0, 1])
 
-rotate_angle = np.pi/2
-rotate_vector = np.array([1, 0, 0])
+# rotate_angle = np.pi/2
+# rotate_vector = np.array([1, 0, 0])
 
 def rotation_quaternion(angle, vector):
     return np.array([np.cos(angle/2), np.sin(angle/2)*vector[0], np.sin(angle/2)*vector[1], np.sin(angle/2)*vector[2]])
 
 def rotate(v, q):
-    return multiply(multiply(q, v), conjugate(q))
+    return multiply_quaternion(multiply_quaternion(q, v), conjugate(q))
 
-q_rotate = rotation_quaternion(rotate_angle, rotate_vector)
+# q_rotate = rotation_quaternion(rotate_angle, rotate_vector)
 
-v_rotated = rotate(v, q_rotate)
+# v_rotated = rotate(v, q_rotate)
 
-print(v_rotated)
+# print(v_rotated)
